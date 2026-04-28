@@ -1,0 +1,162 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: 10rem 2rem;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Background Effects ── */
+.bgGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255, 136, 0, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 100%);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Typography ── */
+.eyebrow {
+  font-family: var(--font-tech);
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  color: #ff8800;
+  margin-bottom: 2rem;
+  display: block;
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1) 0ms, transform 0.8s cubic-bezier(0.2, 1, 0.2, 1) 0ms;
+}
+
+.title {
+  font-family: var(--font-tech);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 1.5rem;
+  letter-spacing: -2px;
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1) 150ms, transform 0.8s cubic-bezier(0.2, 1, 0.2, 1) 150ms;
+}
+
+.accent {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.desc {
+  font-family: var(--font-main);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 0 3.5rem;
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1) 300ms, transform 0.8s cubic-bezier(0.2, 1, 0.2, 1) 300ms;
+}
+
+/* ── Button ── */
+.btnWrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1) 450ms, transform 0.8s cubic-bezier(0.2, 1, 0.2, 1) 450ms;
+}
+
+.primaryBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: #ff8800;
+  border: none;
+  border-radius: 100px;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primaryBtn:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 20px 40px rgba(255, 136, 0, 0.3);
+}
+
+.btnText {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 2px;
+  padding-right: 1.5rem;
+}
+
+.btnIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #000;
+  color: #ff8800;
+  transition: transform 0.4s ease;
+}
+
+.primaryBtn:hover .btnIcon {
+  transform: translateX(-4px);
+}
+
+/* ── Reveal State ── */
+.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 6rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2.8rem;
+    letter-spacing: -1px;
+  }
+}

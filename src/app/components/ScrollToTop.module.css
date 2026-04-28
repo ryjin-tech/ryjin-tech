@@ -1,0 +1,53 @@
+.scrollToTop {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scrollToTop:hover {
+  background: rgba(255, 136, 0, 0.8); /* Accent orange */
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(255, 136, 0, 0.4);
+}
+
+.scrollToTop:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .scrollToTop {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+  }
+}

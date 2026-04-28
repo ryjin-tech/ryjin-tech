@@ -1,0 +1,330 @@
+/* ── Section ─────────────────────────────────────────── */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 0 7rem;
+  overflow: hidden;
+}
+
+/* Ambient glow */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 20% 60%, rgba(255, 136, 0, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 4.5rem;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-tech);
+  font-size: 0.6rem;
+  letter-spacing: 5px;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+.title {
+  font-family: var(--font-tech);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* ── Rows ────────────────────────────────────────────── */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.rowWrapper {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  padding: 1rem 0;
+  will-change: transform;
+  transition: transform 0.04s linear;
+}
+
+/* ── Card — liquid glass ─────────────────────────────── */
+.card {
+  position: relative;
+  flex-shrink: 0;
+
+  /* 4:5 ratio — ~3-4 visible at a time */
+  width: 340px;
+  aspect-ratio: 4 / 5;
+
+  /* Glass base */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+
+  padding: 2rem 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  overflow: hidden;
+
+  cursor: default;
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 136, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 136, 0, 0.3);
+}
+
+/* Inner shimmer highlight — top-left curved stripe */
+.glassHighlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    transparent 70%
+  );
+  border-radius: 22px 22px 60% 60% / 22px 22px 40% 40%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Avatar ─────────────────────────────────────────── */
+.avatarWrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  /* Subtle accent ring */
+  box-shadow:
+    0 0 0 2px rgba(255, 136, 0, 0.45),
+    0 6px 20px rgba(0, 0, 0, 0.5);
+
+  z-index: 2;
+}
+
+.avatarImg {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ── Identity ────────────────────────────────────────── */
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 2;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.name {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.verified {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.username {
+  font-family: var(--font-tech);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.role {
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+/* ── Stars ───────────────────────────────────────────── */
+.stars {
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+}
+
+/* ── Quote ───────────────────────────────────────────── */
+.quote {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  font-style: italic;
+  flex: 1;
+  z-index: 2;
+  position: relative;
+}
+
+/* Giant decorative opening quote — fills empty lower space */
+.quote::before {
+  content: "“";
+  position: absolute;
+  bottom: -1.5rem;
+  right: -0.5rem;
+  font-size: 9rem;
+  line-height: 1;
+  font-style: normal;
+  font-family: Georgia, serif;
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+/* ══════════════════════════════════════════════════════
+   Mobile optimisation  ≤ 640px
+   Only overrides card-level sizes — layout unchanged
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  .section {
+    padding: 4rem 0 5rem;
+    min-height: auto;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .rows {
+    gap: 1rem;
+  }
+
+  .track {
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  /* ── Smaller card ── */
+  .card {
+    width: 200px;
+    aspect-ratio: unset;      /* let height grow with content */
+    min-height: 260px;        /* floor so short quotes don't shrink too much */
+    border-radius: 18px;
+    padding: 1.25rem 1.25rem 1rem;
+    gap: 0.7rem;
+  }
+
+  /* ── Smaller avatar ── */
+  .avatarWrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+
+  /* ── Tighter text ── */
+  .name {
+    font-size: 0.82rem;
+  }
+
+  .username {
+    font-size: 0.52rem;
+  }
+
+  .role {
+    font-size: 0.65rem;
+  }
+
+  .quote {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  /* Shrink the decorative quote mark to match */
+  .quote::before {
+    font-size: 3.5rem;
+    bottom: -0.5rem;
+    right: -0.25rem;
+  }
+
+  .stars svg {
+    width: 11px;
+    height: 11px;
+  }
+}
+
